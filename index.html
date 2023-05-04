@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Instagram Text to Image Converter</title>
+    <style>
+        img {
+            display: block;
+            border: 1px dotted black;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 1080px;
+        }
+
+        button {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <label for="text-input">Enter your text:</label>
+    <br><br>
+<textarea id="text-input" style="width:100%;height: 80vh;">А вот полноценно начать жить вместе они не могли - у Антона после развода осталась лишь маленькая однокомнатная квартира, в которой часто ночевали его дети от первого брака. 
+В этот период мы и начали общаться с Ольгой. Девушка брала у меня консультации по поводу того, как выстраивать коммуникацию и с Антоном, и с его детьми.
+Она любила мужчину и старалась в него вкладываться. Он тоже заботился об Ольге, но переживал по поводу детей - бывшая грозилась ограничить его общение с ними.
+Чтобы лишний раз не злить бывшую, Антон подстраивался под неё. Даже новый год он праздновал с экс-женой и детьми, что очень расстроило мою клиентку.
+
+С одной стороны - Ольга видела, что он стал с ней нежнее, чем раньше. В их отношениях появилось больше тепла и близости. 
+С другой стороны - Антон был очень озабочен, как ему сохранить общение со своими детьми. А ещё Ольга ревновала его к жене, переживала, что у них с Антоном опять может наладиться любовная связь. 
+Когда мы с клиенткой обсуждали  стратегию построения отношений с Антоном, то сосредоточились на следующих пунктах:
+Во-первых, девушке нужно было вычистить свою коммуникацию от претензий, упрёков, жалоб на недостаточное внимание со стороны Антона и подозрений его в неверности. 
+Во-вторых, попробовать повкладываться в него своей заботой в течение 6-12 месяцев, и, если он не сделает нормальное предложение о замужестве, тогда дистанцироваться.
+Параллельно с этими действиями Ольге нужно было активно заниматься своей жизнью, личными опорами, чтобы не всё её внимание уходило на любовную сферу, а только часть
+Отдельный пункт был - отношения с детьми Антона. В этом месте ей было сложно, ведь они считали её виновницей в разводе родителей. 
+Ольга старалась быть открытой к контакту с ними, но в душу к ним не лезла, не пыталась насильно "подружиться", уважала ту дистанцию, которую они держали с ней.
+В течение последнего года девушка брала у меня несколько консультаций, на которых мы корректировали её настройки в сфере любовной коммуникации.
+
+Клиентка делилась переживаниями, что Антон говорит про замужество, свадьбу, но не делает реального предложения, не несёт заявление в ЗАГС.
+Мне приходилось поддерживать клиентку в том, чтобы она не давила на Антона, а продолжала о нём заботиться, раз любит и не готова уйти сейчас. 
+Я видела по прямым и косвенным признакам, что мужчина не равнодушен к ней, серьёзно относится к Ольге и реально рассматривает её в качестве будущей жены.
+
+По моей версии, он не хотел на ней жениться под давлением, и планировал дать себе время отойти от развода, наладить спокойное общение с бывшей женой и детьми. А ещё он хотел убедиться, что с Ольгой у них не будет серьёзных ссор и разногласий, увидеть её поддержку в вопросе выстраивания общения с детьми.
+Последний раз мы общались с Ольгой где-то полгода назад. А вчера она прислала вот такое сообщение. (Публикую его с разрешения клиентки в 3-ёх следующих скриншотах):
+
+Ольга дистанцировалась от Антона тогда, когда уже достаточно вложилась в него, а он успел к ней привязаться, но тянул со свадьбой. Обратите внимание, она написала в сообщении о том, что  «была стабильна». 
+Давайте обсудим этот эффект. В каких случаях вы уходите из важных для вас отношений, но чувствуете реальную устойчивость и ситуация разворачивается в вашу сторону? А в каких ситуациях ваш уход ещё больше расшатывает и ухудшает ваши позиции? Поделитесь своим мнением в комментариях. 
+На вас должен быть любовный запрос со стороны вашего партнёра
+Если партнёр к вам равнодушен, подчеркивает, что не видит будущего с вами, говорит много о своих сомнениях - то лучшее, что вы можете сделать в данной ситуации - 
+оставить его в покое и направить свои силы в другое русло, иначе это будет стратегия не укрепления собственных позиций, а закапывания себя в яму</textarea>
+    <br><br>
+    <button type="button" onclick="convertToImage()">Convert to Instagram Images</button>
+    <br><br>
+<script>
+        function convertToImage() {
+            var images = document.getElementsByTagName('img');
+            while (images.length > 0) {
+                images[0].parentNode.removeChild(images[0]);
+            }
+            document.getElementsByTagName('img')
+            let text = document.getElementById('text-input').value;
+            if (text.length > 2200) text = text.substr(2200);
+            text = text.replaceAll('\n', ' newLine ');
+            const words = text.split(' ');
+            const lines = [];
+            const lineHeight = 50; // Adjust as needed
+            const canvasWidth = 1080;
+            const canvasHeight = 1350;
+            const leftMargin = 70;
+            const topMargin = 100;
+            const bottomMargin = 50;
+            let line = '';
+
+            function newCanvas() {
+                const canvas = document.createElement('canvas');
+                canvas.width = canvasWidth;
+                canvas.height = canvasHeight;
+                const context = canvas.getContext('2d');
+                context.fillStyle = '#fff';
+                context.fillRect(0, 0, canvas.width, canvas.height);
+                context.fillStyle = '#000';
+                context.font = '40px Arial';
+                context.textAlign = 'left';
+                context.textBaseline = 'middle';
+                return canvas;
+            }
+
+            let canvas = newCanvas();
+            let context = canvas.getContext('2d');
+            // Split text into lines based on canvas width and height
+            for (let i = 0; i < words.length; i++) {
+                if (words[i] == 'newLine') {
+                    lines.push(line);
+                    lines.push('');
+                    line = '';
+                    continue;
+                }
+                const testLine = line + words[i] + ' ';
+                const metrics = context.measureText(testLine);
+                const testWidth = metrics.width + 2 * leftMargin;
+                if (testWidth > canvasWidth && i > 0) {
+                    lines.push(line);
+                    line = words[i] + ' ';
+                } else {
+                    line = testLine;
+                }
+            }
+            lines.push(line);
+
+            let lineNumber = 1;
+            // Generate canvas for each line of text
+            for (let i = 0; i < lines.length; i++) {
+                // Center text vertically on canvas
+                let y = topMargin + lineHeight * (lineNumber++);
+                if (y + lineHeight + bottomMargin > canvasHeight) {
+                    const img = document.createElement('img');
+                    img.src = canvas.toDataURL();
+                    document.body.appendChild(img);
+                    canvas = newCanvas();
+                    context = canvas.getContext('2d');
+                    lineNumber = 2;
+                    y = topMargin + lineHeight;
+                }
+                context.fillText(lines[i], leftMargin, y);
+            }
+            // Display the resulting image on the webpage
+            const img = document.createElement('img');
+            img.src = canvas.toDataURL();
+            document.body.appendChild(img);
+        }
+    </script>
+</body>
+</html>
