@@ -89,7 +89,7 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
     <div id="images"></div>
     <script>
         const textarea = document.getElementsByTagName('textarea')[0];
-        const getCookieValue = function (name) { document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '' }
+        const getCookieValue = (name) => (document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '');
         const savedText = getCookieValue('text');
         if (savedText) textarea.value = decodeURIComponent(savedText);
         textarea.addEventListener("paste", () => setTimeout(() => textarea.setSelectionRange(0, 2200), 100));
