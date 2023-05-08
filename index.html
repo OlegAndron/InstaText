@@ -88,6 +88,11 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
 
     <div id="images"></div>
     <script>
+        const textarea = document.getElementsByTagName('textarea')[0];
+        textarea.addEventListener("paste", function () {
+            setTimeout(function () { textarea.setSelectionRange(0, 2200) }, 100);
+        });
+
         function convertToImage() {
             var images = document.getElementsByTagName('img');
             while (images.length > 0) {
@@ -171,6 +176,7 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
             container.appendChild(img);
         }
         convertToImage();
+
     </script>
 </body>
 </html>
