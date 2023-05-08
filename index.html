@@ -89,15 +89,15 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
     <div id="images"></div>
     <script>
         const textarea = document.getElementsByTagName('textarea')[0];
-        textarea.addEventListener("paste", function () {
-            setTimeout(function () { textarea.setSelectionRange(0, 2200) }, 100);
-        });
+        const getCookieValue = function (name) { document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '' }
+        const savedText = getCookieValue('text');
+        if (savedText) textarea.value = decodeURIComponent(savedText);
+        textarea.addEventListener("paste", () => setTimeout(() => textarea.setSelectionRange(0, 2200), 100));
+        textarea.addEventListener("input", () => { document.cookie = `text=${encodeURIComponent(textarea.value)}; expires=Thu, 31 Dec 2099 23:59:59 GMT` });
 
         function convertToImage() {
             var images = document.getElementsByTagName('img');
-            while (images.length > 0) {
-                images[0].parentNode.removeChild(images[0]);
-            }
+            while (images.length > 0) images[0].parentNode.removeChild(images[0]);
             const btn = document.getElementById('btn');
             if (btn.style.background == '') {
                 btn.style.background = 'aliceblue'
@@ -176,6 +176,8 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
             container.appendChild(img);
         }
         convertToImage();
+
+
 
     </script>
 </body>
