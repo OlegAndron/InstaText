@@ -64,12 +64,7 @@
 </head>
 <body>
     <div id="editor">
-        <textarea id="text-input">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-
-It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-</textarea>
+        <textarea id="text-input" placeholder="Enter your post here..."></textarea>
         <!--<table>
             <tbody>
             <tr><td colspan="4"><b>Margins</b></td><td colspan="2"><b>Font</b></td></tr>
@@ -90,10 +85,12 @@ It was popularised in the 1960s with the release of Letraset sheets containing L
     <script>
         const textarea = document.getElementsByTagName('textarea')[0];
         const getCookieValue = (name) => (document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)')?.pop() || '');
-        const savedText = getCookieValue('text');
-        if (savedText) textarea.value = decodeURIComponent(savedText);
+        if (localStorage) {
+            const savedText = localStorage.getItem('text')
+            if (savedText) textarea.value = savedText;
+            textarea.addEventListener("input", () => localStorage.setItem('text', textarea.value));
+        }
         textarea.addEventListener("paste", () => setTimeout(() => textarea.setSelectionRange(0, 2200), 100));
-        textarea.addEventListener("input", () => { document.cookie = `text=${encodeURIComponent(textarea.value)}; expires=Thu, 31 Dec 2099 23:59:59 GMT` });
 
         function convertToImage() {
             var images = document.getElementsByTagName('img');
